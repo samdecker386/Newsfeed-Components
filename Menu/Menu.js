@@ -33,3 +33,39 @@ let menuItems = [
   Step 6: add the menu component to the DOM.
   
 */
+
+// create a function that will create a hamburger menu
+function createMenu(items) {
+
+  // define new elements
+  const menu = document.createElement('div');
+  const list = document.createElement('ul');
+
+  // set up structure of elements
+  items.forEach(item => {
+    const link = document.createElement('li');
+    const anchor = document.createElement('a');
+    anchor.textContent = item;
+    link.appendChild(anchor);
+    list.appendChild(link);
+ });
+  menu.appendChild(list);
+
+  // add classes to elements
+  menu.classList.add('menu');
+  
+  return menu;
+};
+
+// more elements defined
+const menu = createMenu(menuItems); // passing array into function
+const menuButton = document.querySelector('.menu-button');
+
+// selecting header and creating structure
+const header = document.querySelector('.header');
+header.appendChild(menu); // essentially passing createMenu(menuItems)
+
+// toggle event for hamburger menu to open
+menuButton.addEventListener('click', () => {
+  menu.classList.toggle('menu--open');
+});
